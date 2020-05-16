@@ -14,7 +14,7 @@ namespace InnostageTest
         public Startup(IConfiguration configuration)
         {
             var configBuilder = new ConfigurationBuilder()
-                .AddJsonFile("prefered_users.json")
+                .AddJsonFile("predefined_users.json")
                 .AddConfiguration(configuration);
 
             Configuration = configBuilder.Build();

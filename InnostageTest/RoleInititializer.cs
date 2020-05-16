@@ -21,7 +21,7 @@ namespace InnostageTest
                 await roleManager.CreateAsync(new IdentityRole("operator"));
             }
 
-            foreach (var userInfo in _configuration.GetSection("PreferedUsers").GetChildren())
+            foreach (var userInfo in _configuration.GetSection("PredefinedUsers").GetChildren())
             {
                 if(await userManager.FindByNameAsync(userInfo["Username"]) == null)
                 {

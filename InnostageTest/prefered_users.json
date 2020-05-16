@@ -1,0 +1,14 @@
+{
+  "PreferedUsers":[
+    {
+      "Username": "operator1",
+      "Password": "1234",
+      "Role": "operator"
+    },
+    {
+      "Username": "operator2",
+      "Password": "1234",
+      "Role": "operator"
+    }
+  ]
+}

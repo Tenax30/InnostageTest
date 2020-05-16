@@ -1,0 +1,37 @@
+﻿@model InnostageTest.Models.Request
+@{
+    ViewData["Title"] = "Создание заявки";
+}
+
+<h2>Создание заявки</h2>
+<form id="create-request-form" method="post" asp-antiforgery="true" asp-controller="Requests" asp-action="Create">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <label asp-for="ClientName"></label><br />
+        <input class="form-control" asp-for="ClientName" />
+        <span asp-validation-for="ClientName"></span>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <label asp-for="Phone"></label>
+            <input class="form-control" type="tel" asp-for="Phone" />
+            <span asp-validation-for="Phone"></span>
+        </div>
+        <div class="col">
+            <label asp-for="RequestTime"></label><br />
+            <input class="form-control" type="datetime-local" asp-for="RequestTime" 
+                   value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm").Replace(' ', 'T')" />
+            <span asp-validation-for="RequestTime"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Text"></label><br />
+        <textarea class="form-control" rows="5" asp-for="Text"></textarea>
+        <span asp-validation-for="Text"></span>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Создать" />
+</form>
+
+@section scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

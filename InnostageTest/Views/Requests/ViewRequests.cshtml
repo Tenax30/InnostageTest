@@ -1,0 +1,42 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@model InnostageTest.Models.User
+
+@{
+    ViewData["Title"] = "Заявки";
+}
+
+
+<h2>Заявки</h2>
+<div class="table-wrapper-scroll-y custom-table-scrollbar">
+    <table id="requests-table" class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ФИО клиента</th>
+                <th scope="col">Время обращения</th>
+                <th scope="col">Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            @inject InnostageTest.Models.ApplicationContext db
+            @{
+                var requests = db.Requests
+                    .Include(r => r.Creator)
+                    .Include(r => r.RequestStatus)
+                    .Where(r => r.Creator.Id == Model.Id);
+            }
+            @foreach (var request in requests)
+            {
+                <tr>
+                    <th scope="row"><a href="View/@request.RequestId">@request.RequestId</a></th>
+                    <td><a href="View/@request.RequestId">@request.ClientName</a></td>
+                    <td><a href="View/@request.RequestId">@request.RequestTime.ToString("dd.mm.yyyy hh:mm")</a></td>
+                    <td><a href="View/@request.RequestId">@request.RequestStatus.Name</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a href="~/Requests/Create" class="btn btn-primary">Новая заявка</a>
+
+

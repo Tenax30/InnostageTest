@@ -72,6 +72,11 @@ namespace InnostageTest.Controllers
                 .Include(r => r.RequestStatus)
                 .FirstOrDefault(r => r.RequestId == id);
 
+            if(request == null)
+            {
+                return NotFound();
+            }
+
             return View(request);
         }
     }
